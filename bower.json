@@ -1,0 +1,15 @@
+{
+  "name": "jettest",
+  "description": "a test of skills",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "tuktuk": "^1.0.0"
+  }
+}
