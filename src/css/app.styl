@@ -1,8 +1,6 @@
 $app = jettest
-$header_height = 45px
-$header_padding = 12px
-$footer_height = 60px
-$footer_padding = 11px
+$header_height = 41px
+$header_height_collapsed = 38px
 
 /*The fonts*/
 @font-face {
@@ -31,7 +29,36 @@ $footer_padding = 11px
 }
 
 /*Main definitions*/
+body
+	font-family: 'Liberation Mono', sans-serif
+	height: auto
+
 .{$app}-main
-	margin-bottom: $footer_height
+	/*margin-bottom: $footer_height*/
 	margin-top: $header_height
-	padding-top: 20px
+	width: 100%
+
+.{$app}-header
+	position: fixed
+	top: 0
+	left: 0
+	height: $header_height
+	width: 100%
+	z-index: 1000
+
+.{$app}-form-label
+	margin-top: 10px!important
+
+/*Tuktuk overrides*/
+@media (max-width: 767px)
+	nav button, nav .button, nav a
+		display: inline-block!important
+
+	nav
+		margin-top: 0
+
+	.{$app}-header
+		height: $header_height_collapsed
+
+	.{$app}-main
+		margin-top: $header_height_collapsed

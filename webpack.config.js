@@ -7,18 +7,17 @@ var build_dir = path.resolve(__dirname, 'build/app')
 var bower_dir = path.resolve(__dirname, 'bower_components')
 
 var config = {
-	entry: src_dir + '/js/main.js',
+	entry: src_dir + '/js/main.jsx',
 	output: {
 		path: build_dir,
-		filename: '[name].js',
-		chunkFilename: '[id].js'
+		filename: '[name].js'
 	},
 	module: {
 		loaders: [{
 				test: /\.js?/,
 				include: src_dir,
 				loader: 'babel-loader',
-				query: {presets: ['react', 'es2015']}
+				query: {presets: ['react', 'es2015', 'stage-2']}
 			}, {
 				test: /\.css$/,
 				include: [src_dir, bower_dir],
@@ -34,11 +33,14 @@ var config = {
 			}
 		]
 	},
-	resolve: {
-		modules: ['web_modules', 'node_modules', 'bower_components']
-	},
 	plugins: [
-		new ExtractTextPlugin('app.css')
+		new ExtractTextPlugin('app.css'),
+		//Tuktuk requirements
+		new webpack.ProvidePlugin({
+			$: "jquery",
+			jQuery: "jquery",
+			"window.jQuery": "jquery"
+		})
 	]
 }
 
