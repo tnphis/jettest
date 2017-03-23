@@ -22,6 +22,8 @@ export function addBook(fields) {
 
 				if (bookExists) {
 					reject('Эта книга уже есть в списке!')
+				} else if (fields.pic && fields.pic.substr(0,10) != 'data:image') {
+					reject('Файл обложки не является изображением')
 				} else {
 					let ids_array = books.map(function(book) {
 						return book.id
