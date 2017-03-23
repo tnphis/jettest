@@ -19,6 +19,10 @@ import AddBook from './containers/addbook.jsx'
 import mainstore from './store'
 
 class App extends React.Component {
+	componentDidMount() {
+		let indicator = document.getElementById('loadingIndicator')
+		indicator.parentNode.removeChild(indicator)
+	}
 	render() {
 		return (
 			<Router history={hashHistory}>

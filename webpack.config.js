@@ -4,7 +4,6 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 var src_dir = path.resolve(__dirname, 'src')
 var build_dir = path.resolve(__dirname, 'build/app')
-var bower_dir = path.resolve(__dirname, 'bower_components')
 
 var config = {
 	entry: src_dir + '/js/main.jsx',

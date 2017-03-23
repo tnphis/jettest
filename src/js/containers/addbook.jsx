@@ -10,16 +10,40 @@ class AddBook extends React.Component {
 			fields: {}
 		}
 
+		this.clearPic = this.clearPic.bind(this)
 		this.handleChange = this.handleChange.bind(this)
+		this.handleFileChange = this.handleFileChange.bind(this)
 	}
 	addBook(e) {
 		e.preventDefault()
 		this.props.addBook(this.state.fields)
 	}
+	clearPic(e) {
+		e.preventDefault()
+		document.getElementById('pic').value = null
+		this.updateFields('pic', null)
+	}
 	handleChange(e, field) {
-		var currentFields = this.state.fields
-		currentFields[field] = e.target.value
+		this.updateFields(field, e.target.value)
+	}
+	handleFileChange(e) {
+		if (e.target.files && e.target.files[0]) {
+			var self = this
+			document.getElementById('book_submit_button').disabled = true
+			let fr = new FileReader
+			fr.readAsDataURL(e.target.files[0])
+			fr.onload = function() {
+				self.updateFields('pic', fr.result)
+				document.getElementById('book_submit_button').disabled = null
+			}
 
+		} else {
+			this.updateFields('pic', null)
+		}
+	}
+	updateFields(field, value) {
+		let currentFields = this.state.fields
+		currentFields[field] = value
 		this.setState({
 			fields: currentFields
 		})
@@ -61,15 +85,24 @@ class AddBook extends React.Component {
 						</div>
 						<div className="row padding-top">
 							<div className="column_3 text left">
-								<label htmlFor="pic">Обложка</label>
+								<label htmlFor="pic">Обложка</label><hr/>
+								<small style={{'fontSize': '.75em'}}>Выберите файл с изображением обложки. Оптимальный размер - 145x205px.</small>
 							</div>
-							<div className="column_9">
-								<input type="file" name="pic" id="pic"/>
+							<div className="column_8">
+								<input
+									type="file"
+									name="pic"
+									id="pic"
+									onChange={this.handleFileChange}
+								/>
+							</div>
+							<div className="column_1">
+								<button type="button" className="tiny alert" onClick={this.clearPic}><span className="icon remove"></span></button>
 							</div>
 						</div>
 						<div className="row padding-top padding-bottom">
 							<div className="column_12 text center">
-								<button type="submit" className="bck theme">Добавить</button>
+								<button id="book_submit_button" type="submit" className="bck theme">Добавить</button>
 							</div>
 						</div>
 					</form>
