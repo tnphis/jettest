@@ -1,10 +1,10 @@
 from flask import Flask, g, request, session, redirect, abort
 
-sharptestapp = Flask('web', static_folder = '../app', static_url_path = '/app')
-sharptestapp.config.from_pyfile('config.py')
+jettestapp = Flask('web', static_folder = '../app', static_url_path = '/app')
+jettestapp.config.from_pyfile('config.py')
 
-@sharptestapp.route('/')
-@sharptestapp.route('/<path:path>')
+@jettestapp.route('/')
+@jettestapp.route('/<path:path>')
 def return_index(path = ''):
 	#this needs to actually return index without redirecting!
 	index_file = open('../app/index.html', 'r')
@@ -13,4 +13,4 @@ def return_index(path = ''):
 	return index_file_contents
 
 if __name__ == '__main__':
-	sharptestapp.run()
+	jettestapp.run()

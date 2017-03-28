@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "description": "a test of skills",
   "dependencies": {
-    "jquery": "^3.2.1",
+    "jqlite": "^0.2.41",
     "react": "~15.4.2",
     "react-dom": "~15.4.2",
     "react-redux": "~5.0.3",

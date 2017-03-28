@@ -37,9 +37,9 @@ var config = {
 		new ExtractTextPlugin('app.css'),
 		//Tuktuk requirements
 		new webpack.ProvidePlugin({
-			$: "jquery",
-			jQuery: "jquery",
-			"window.jQuery": "jquery"
+			$: "jqlite",
+			jQuery: "jqlite",
+			"window.jQuery": "jqlite"
 		})
 	]
 }
